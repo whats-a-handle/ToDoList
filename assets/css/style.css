@@ -1,0 +1,32 @@
+body{
+
+	background-color:#7AD9DC;
+
+}
+
+
+.page-header{
+
+	color:#FFF;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+
+}
+
+.column-title{
+
+	color:white;
+}
+.task{
+
+	border-width:5px;
+	border-style:solid;
+	border-color:white;
+}
+.task-text{
+	font-size: 25px;
+	color:white;
+}

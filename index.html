@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Track Stuff</title>
+	
+	
+	<link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+	
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">	
+  	</script>
+  	<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  	<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-database.js"></script>
+
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+  	</script>
+  	
+</head>
+<body>
+	<header>
+		<div class="page-header text-center">
+  			<h1>To Do List</h1>
+		</div>
+ </header>
+
+
+ 
+	<div class="container text-center">
+		<div class="row">
+		<div class="col-sm-6 task-column">
+			<h2 class="column-title">In-Progress </h2>
+			<div class="task"> 
+				<div class="task-text"> Finish this homework</div>
+				<button type="button" class="btn btn-success complete-btn">Complete</button>
+				<button type="button" class="btn btn-danger delete-btn">Delete</button>
+			</div>
+		</div>
+		<div class="col-sm-6 task-column"> 
+			<h2 class="column-title">Completed </h2>
+		</div>
+	</div>
+
+
+
+
+<script src="./assets/javascript/app.js"></script>
+
+</body>
+</html>
