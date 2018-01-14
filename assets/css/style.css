@@ -17,16 +17,23 @@ body{
 }
 
 .column-title{
-
+	
+	margin-left:10px;
 	color:white;
+	font-size: 35px;
+}
+
+.column-title-container{
+	margin-bottom:20px;
 }
 .task{
-
-	border-width:5px;
+	margin-bottom:10px;
+	border-radius: 15px;
 	border-style:solid;
-	border-color:white;
+	border-color:black;
+	background-color:white;
 }
 .task-text{
 	font-size: 25px;
-	color:white;
+	color:black;
 }
