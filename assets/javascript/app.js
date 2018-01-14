@@ -192,7 +192,45 @@ $(document).ready(function(){
 
 		const taskId = $(this).attr('taskid');
 
-		console.log(taskId);
+		const taskRef = Database.ref('tasks');
+
+		taskRef.orderByChild("taskId").equalTo(taskId).once("value",function(snapshot){
+			const key = Object.keys(snapshot.val())[0];
+			
+				Database.ref('tasks/'+key).update({completed:true});
+			
+		});
+
+	});
+
+
+	$(document).on('click', '.incomplete-btn', function(){
+
+		const taskId = $(this).attr('taskid');
+
+		const taskRef = Database.ref('tasks');
+
+		taskRef.orderByChild("taskId").equalTo(taskId).once("value",function(snapshot){
+			const key = Object.keys(snapshot.val())[0];
+			
+				Database.ref('tasks/'+key).update({completed:false});
+			
+		});
+
+	});
+
+	$(document).on('click', '.delete-btn', function(){
+
+		const taskId = $(this).attr('taskid');
+
+		const taskRef = Database.ref('tasks');
+
+		taskRef.orderByChild("taskId").equalTo(taskId).once("value",function(snapshot){
+			const key = Object.keys(snapshot.val())[0];
+
+			Database.ref('tasks/'+key).remove();
+
+		});
 
 
 
