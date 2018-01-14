@@ -102,12 +102,15 @@ function createPageHandler(){
 
 
 	const PageHandler = {
-
+		taskDescriptionInput : $(".task-input"),
 		completedTaskContainer : $(".completed-task-container"),
 		incompleteTaskContainer: $(".incomplete-task-container"),
 		completedTasks : [],
 		incompleteTasks: [],
 
+		clearTaskInput : function(){
+			this.taskDescriptionInput.val("");
+		},
 		clearCompleteTasks : function(){
 
 			this.completedTaskContainer.empty();
@@ -178,7 +181,10 @@ $(document).ready(function(){
 
 	$(document).on('click', '.new-task-btn', function(){
 
-		const task = createTask("hello there!", false,null);
+		const taskDescription = PageHandler.taskDescriptionInput.val();
+		PageHandler.clearTaskInput();
+		const task = createTask(taskDescription, false,null);
+
 
 		addTaskToDatabase(task,User.id,Database);
 		
