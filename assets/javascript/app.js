@@ -17,12 +17,12 @@ function connectDatabase(){
 }
 
 
-function createTask(text,completed){
+function createTask(text,completed,id){
 
 	const Task = {
 		description: text,
 		completed: completed,
-		taskId: undefined,
+		taskId: id,
 		ownerId:undefined,
 	}
 
@@ -67,8 +67,8 @@ function getCompletedTasks(Database){
 	taskRef.orderByChild("completed").equalTo(true).once("value",function(snapshot){
 
 		for(let key in snapshot.val()){
-
-			PageHandler.addCompleteTask(createTask(snapshot.val()[key].description, snapshot.val()[key].completed));
+			const task = createTask(snapshot.val()[key].description, snapshot.val()[key].completed, snapshot.val()[key].taskId);
+			PageHandler.addCompleteTask(task);
 
 		}
 
@@ -85,9 +85,10 @@ function getIncompleteTasks(Database){
 	PageHandler.clearIncompleteTasks();
 	taskRef.orderByChild("completed").equalTo(false).once("value",function(snapshot){
 
-		for(let key in snapshot.val()){
+		for(let key in snapshot.val()){	
 
-			PageHandler.addIncompleteTask(createTask(snapshot.val()[key].description, snapshot.val()[key].completed));
+			const task = createTask(snapshot.val()[key].description, snapshot.val()[key].completed, snapshot.val()[key].taskId);
+			PageHandler.addIncompleteTask(task);
 
 		}
 
@@ -118,11 +119,11 @@ function createPageHandler(){
 
 		addIncompleteTask : function(task){
 
-			let taskElement = "<div class=\"task\" taskid=\"" + task.taskid + "\">";
+			let taskElement = "<div class=\"task\">";
 			taskElement += "<div class=\"task-text\">" + task.description + "</div>";
-			taskElement += "<button type=\"button\" class=\"btn btn-success complete-btn\">";
+			taskElement += "<button type=\"button\" class=\"btn btn-success complete-btn\"taskid=\"" + task.taskId +"\">";
 			taskElement += "Complete" + "</button>";
-			taskElement += "<button type=\"button\" class=\"btn btn-danger delete-btn\">";
+			taskElement += "<button type=\"button\" class=\"btn btn-danger delete-btn\"taskid=\"" + task.taskId +"\">";
 			taskElement += "Delete" + "</button>";
 			
 			this.incompleteTaskContainer.append(taskElement);
@@ -130,11 +131,11 @@ function createPageHandler(){
 		},
 		addCompleteTask : function(task){
 
-			let taskElement = "<div class=\"task\" taskid=\"" + task.taskid + "\">";
+			let taskElement = "<div class=\"task\" taskid=\"" + task.taskId + "\">";
 			taskElement += "<div class=\"task-text\">" + task.description + "</div>";
-			taskElement += "<button type=\"button\" class=\"btn btn-warning incomplete-btn\">";
+			taskElement += "<button type=\"button\" class=\"btn btn-warning incomplete-btn\"taskid=\"" + task.taskId +"\">";
 			taskElement += "Incomplete" + "</button>";
-			taskElement += "<button type=\"button\" class=\"btn btn-danger delete-btn\">";
+			taskElement += "<button type=\"button\" class=\"btn btn-danger delete-btn\"taskid=\"" + task.taskId +"\">";
 			taskElement += "Delete" + "</button>";
 			
 			this.completedTaskContainer.append(taskElement);
@@ -177,12 +178,22 @@ $(document).ready(function(){
 
 	$(document).on('click', '.new-task-btn', function(){
 
-		const task = createTask("hello there!", false);
+		const task = createTask("hello there!", false,null);
 
 		addTaskToDatabase(task,User.id,Database);
 		
 		
 		
+
+
+	});
+
+	$(document).on('click', '.complete-btn', function(){
+
+		const taskId = $(this).attr('taskid');
+
+		console.log(taskId);
+
 
 
 	});
